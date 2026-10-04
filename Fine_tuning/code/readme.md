@@ -60,9 +60,9 @@ So i swich to Google Colab netbook, because google offer a free use of GPU as an
 2- select T4 GPU as a hardware
 3- Run the code there
 
-This is a link of the nootbook on google colab, you are free to access
+This is a link of the nootbook on google colab, you are free to access to my gist to clone the jupyter notebook
 
-[https://colab.research.google.com/drive/1UOhTBHs751vaJKdKWPoDJ2hF9OmH8Dre?usp=sharing](https://)
+[https://gist.github.com/d5fcff3f5b47bd22e170704d4ec2052d.git](https://)
 
-Below the processing with google Colab, From 436 Hours to 16 min
+Below the processing with google Colab, From 436 Hours to 23 min
 !["fine tuning on google colab](../assets/results_gColab.png)

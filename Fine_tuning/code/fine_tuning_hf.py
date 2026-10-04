@@ -79,7 +79,7 @@ def main():
         per_device_train_batch_size=1,  # train batch size to one raw at a time
         gradient_accumulation_steps=4,  # Accumulate gradients over 4 steps to simulate a larger batch size
         per_device_eval_batch_size=1,   # 
-        num_train_epochs=32,
+        num_train_epochs=1,
         logging_steps=50,
         report_to="none",              # Prevents automatic tracking sync prompts (e.g., wandb)
         weight_decay=0.01,

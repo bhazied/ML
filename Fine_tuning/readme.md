@@ -143,12 +143,12 @@ Training process is about end-to-end of LLM finetuning, we ca use many libreries
 #### 3. Training Scale & Hardware Footprint
 
 * **Model Size Considerations:** Even small models (e.g., Pythia-70M or Pythia-410M) require hundreds of megabytes to gigabytes of GPU VRAM due to model weights, optimizer states, and gradient buffers.
-* **CPU vs. GPU Training:** While small demo models (70M parameters) can run on CPUs for educational walkthroughs, production fine-tuning typically requires larger models (1B to 7B+ parameters) trained on dedicated GPU infrastructure.
+* **CPU vs GPU Training:** While small demo models (70M parameters) can run on CPUs for educational walkthroughs, production fine-tuning typically requires larger models (1B to 7B+ parameters) trained on dedicated GPU infrastructure.
 
 #### 4. Training Duration & Underfitting vs. Overfitting
 
 * **Step Limit Effects:** Training for only a few gradient steps (e.g., 3 steps) leaves the model behaving identically to the base pre-trained model.
-* **Full Dataset Passes:** Proper fine-tuning requires multiple passes over the dataset (e.g., 2–3 epochs). Over time, loss decreases, and the output transitions from generic/rambling text to structured, task-aligned answers.
+* **Full Dataset Passes:** Proper fine-tuning requires multiple passes over the dataset (e.g., 2–3 epochs). Over time, loss decreases, and the output transitions from generic/rambling text to structured, task-aligned answers. In the case when we have a huge dataset, the idea is to shunk it on batch and reduce the number of epoch(E.g one only epoch) and one epoch will use more many step. don't use many epoch for two massive reason, it'S breack the brain model and the model will be overfit and the second reason is about cost.
 
 #### 5. Safety & Moderation via Training Data
 
@@ -162,12 +162,9 @@ Training process is about end-to-end of LLM finetuning, we ca use many libreries
 
 After training the model, it'S very important to evaluate the model, it's helps to improove the model over time. And evaluation a generative model is very very difficult because we dont have a clear matrics and performance for these model. So as result, teh human evaluation is the most reliable way, doing by a expert of the domaine and access to output for evaluation, also a good test dataset is crucial(hight-quality, accurate, generalized, without redundancy). An other popular way is ELO comparison, so it'S look likes A/B testing between multiple model. Also we can benshmark teh tuned model aginst the base model with the same test dataset.
 
-We can evaluate our model with sementic simularity :
+We can evaluate our model with sementic simularity with an other model as a judge, we use a more powerfull model to grade our fine tuned model
 
-**cosine simularity :**
-
-**BERT scoring :**
-
+Also we can use am evaluation framework, we dont need to write evaluation pipeline from scratch, just use [DeepEval](https://deepeval.com/docs/faq) or [Raga](https://vinayc.me/notes/raga-framework-part-3-evaluating-a-rag-pipeline-with-ragas-a-minimal-working-example/), theese tools provide a prebuilt template for LLM-as-a-judge
 
 ### Libraries
 
@@ -182,6 +179,11 @@ And at the end of this post, you find an exemple of fintuning a model using hugg
 #### Role Fine Tuning in LLMOps
 
 Fine tuning modify the underlying weight of an existing foudation model to adapt its style, tone or domain knewldge. however, updating these parameters intriduces a massive operational that LLMOps framework directely resolve.
+
+#### Fine-tuning Hands-one
+
+In the final, I create an exemple to tune a small model using transformer, in this example I chose to finetune a causal model instead of a classification model for more generic case. And before to install and run it, I hope to inform you abour the needed capabilities:
+
 
 ### Appendix:
 
